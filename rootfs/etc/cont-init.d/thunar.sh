@@ -7,21 +7,13 @@ log() {
     echo "[cont-init.d] $(basename $0): $*"
 }
 
-# Make sure mandatory directories exist.
-mkdir -p /config/log
+# Generate machine id.
+if [ ! -f /etc/machine-id ]; then
+    log "generating machine-id..."
+    cat /proc/sys/kernel/random/uuid | tr -d '-' > /etc/machine-id
+fi
 
 # Take ownership of the config directory content.
-chown -R $USER_ID:$GROUP_ID /config/*
+find /config -mindepth 1 -exec chown $USER_ID:$GROUP_ID {} \;
 
-# Take ownership of the output directory.
-#if ! chown $USER_ID:$GROUP_ID /output; then
-    # Failed to take ownership of /output.  This could happen when,
-    # for example, the folder is mapped to a network share.
-    # Continue if we have write permission, else fail.
-#    if s6-setuidgid $USER_ID:$GROUP_ID [ ! -w /output ]; then
-#        log "ERROR: Failed to take ownership and no write permission on /output."
-#        exit 1
-#    fi
-#fi
-
-# vim: set ft=sh :
+# vim:ft=sh:ts=4:sw=4:et:sts=4

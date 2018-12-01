@@ -18,9 +18,9 @@ RUN apk --no-cache add \
 	thunar-archive-plugin
 
 # Maximize only the main/initial window.
-# RUN \
-#     sed-patch 's/<application type="normal">/<application type="normal" title="thunar">/' \
-# 	/etc/xdg/openbox/rc.xml
+RUN \
+    sed-patch 's/<application type="normal">/<application type="normal" name="thunar">/' \
+	/etc/xdg/openbox/rc.xml
 
 # Generate and install favicons.
 RUN \
@@ -44,4 +44,4 @@ LABEL \
       org.label-schema.description="Docker container for thunar" \
       org.label-schema.version="unknown" \
       org.label-schema.vcs-url="https://github.com/shokinn/docker-thunar" \
-	  org.label-schema.schema-version="1.0"
+      org.label-schema.schema-version="1.0"
