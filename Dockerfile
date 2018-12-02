@@ -7,13 +7,15 @@ WORKDIR /tmp
 # Install xterm.
 RUN apk --no-cache add \
 	desktop-file-utils \
-	adwaita-icon-theme \
+	gnome-icon-theme \
 	ttf-dejavu \
 	unrar \
 	unzip \
 	tar \
 	bzip2 \
 	gzip \
+	p7zip \
+	xarchiver \
 	thunar \
 	thunar-archive-plugin
 
