@@ -1,3 +1,7 @@
+# DEPRECATION NOTICE
+> [!warning]
+> This repository is deprecated and won't be updated anymore!\
+
 # thunar-docker
 
 A repository for creating a docker container including Thunar with GUI interface.
